@@ -1,25 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Water Drop Game</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ebb and Crow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="game-wrapper">
-        <h1 class="game-title">Water Drop</h1>
-        <p class="game-tagline">Catch the good drops, avoid the bad ones!</p>
-        <div class="score-panel">
-            <div class="score">Score: <span id="score">0</span></div>
-            <div class="timer">Time: <span id="time">30</span>s</div>
-            <button id="start-btn">Start Game</button>
-        </div>
-        
-        <div id="game-container">
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
+<main class="game" id="game">
+  <div class="topbar"><button class="btn secondary small" id="resetBtn">Reset</button></div>
+  <div class="hud">
+    <span id="turn">Turn 1</span>
+    <span class="pressure">Pressure <b id="pressure">1</b></span>
+    <span id="score">Score: 0</span>
+  </div>
+  <div class="sky" aria-hidden="true">
+    <div class="jar" id="jarSmall"></div>
+    <div class="stream"></div>
+  </div>
+  <div class="board" id="board" role="grid" aria-label="Sewer board"></div>
+  <p class="msg" id="msg" aria-live="polite"></p>
+  <div class="hand" id="hand" aria-label="Your hand"></div>
+  <div class="actions"><button class="btn" id="endTurn">End turn</button></div>
+
+  <section class="overlay show" id="title">
+    <div class="big-jar" id="jarBig"></div>
+    <h1>Ebb and Crow</h1>
+    <p>Dirty water is pouring from the jar. Keep it out of the clean reservoir in the bottom-right corner.</p>
+    <ul class="rules">
+      <li>Pick a card, then tap a tile to play it. Play as many as you like.</li>
+      <li>End your turn and the water flows. Pressure rises every few turns.</li>
+      <li>Draining water scores more than just holding it back.</li>
+    </ul>
+    <button class="btn" id="startBtn">Start</button>
+  </section>
+
+  <section class="overlay" id="over">
+    <div class="crow" id="crowArt"></div>
+    <h2>The reservoir is ruined</h2>
+    <p>The crow watches the murk swirl into the clean water.</p>
+    <dl class="stats">
+      <dt>Turns survived</dt><dd id="oTurns">0</dd>
+      <dt>Water drained</dt><dd id="oDrained">0</dd>
+      <dt>Score</dt><dd id="oScore">0</dd>
+      <dt>Best</dt><dd id="oBest">0</dd>
+    </dl>
+    <button class="btn" id="againBtn">Play again</button>
+  </section>
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>
